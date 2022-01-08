@@ -3,7 +3,7 @@
   <div class="card" style="width: 18rem;">
     <ul class="list-group list-group-flush">
       <% @tasks.each do |task| %>
-        <li class="list-group-item"> [<%= task.completed ? "X" : " " %>] <%= task.title %> </li>
+        <li class="list-group-item"> [<%= task.completed ? "X" : " " %>] <%= link_to task.title, task_path(task) %> </li>
       <% end %>
     </ul>
   </div>   
