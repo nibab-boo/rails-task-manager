@@ -18,5 +18,5 @@ Rails.application.routes.draw do
 
   resources :tasks
 
-  get "task/:id/checked", to: "tasks#check", as: "check_task"
+  get "tasks/:id/checked", to: "tasks#check", as: "check_task"
 end
