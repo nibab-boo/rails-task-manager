@@ -1,14 +1,12 @@
-<div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-4"><%= @task.title %></h1>
     <p class="card p-3"><%= @task.details %></p>
     <% if @task.completed %>
-      <p class="">This task is completed.</p>
+      <p class=""><i class="far fa-check-square"></i> This task is completed.</p>
     <% else %>
-      <p class="">This task is not completed.</p>
+      <p class="mb-5"><i class="far fa-square"></i>This task is not completed.</p>
     <% end %>
     <%= link_to "back", tasks_path, class: "btn btn-primary" %>
     <%= link_to "edit", edit_task_path, class: "btn btn-success" %>
-    <%= link_to "edit", task_path, class: "btn btn-danger", data: { confirm: "Did you really complete that?"}, method: "delete" %>
+    <%= link_to "delete", task_path, class: "btn btn-danger", data: { confirm: "Did you really complete that?"}, method: "delete" %>
   </div>
-</div>

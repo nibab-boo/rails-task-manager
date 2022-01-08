@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :finding_id, only: [:show, :edit, :destroy, :update]
+  before_action :finding_id, only: [:show, :edit, :destroy, :update, :check]
   def index
     @tasks = Task.all
   end
@@ -11,7 +11,7 @@ class TasksController < ApplicationController
   end
   
   def create
-    task = Task.create(param_filter)
+    task = Task.create(param_filter.except(:completed))
     redirect_to tasks_path
   end
   
@@ -27,10 +27,16 @@ class TasksController < ApplicationController
     redirect_to tasks_path
   end
 
+  def check
+    @task.completed = !@task.completed
+    @task.save
+    redirect_to tasks_path
+  end
+
   private
 
   def param_filter
-    params.require(:task).permit(:title, :details)
+    params.require(:task).permit(:title, :details, :completed)
   end
 
   def finding_id

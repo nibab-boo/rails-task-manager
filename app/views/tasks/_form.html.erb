@@ -1,5 +1,8 @@
 <%= simple_form_for(task) do |f| %>
   <%= f.input :title %>
   <%= f.input :details %>
+  <% unless task.new_record? %>
+    <%= f.input :completed %>
+  <% end %>
   <%= f.submit %>
 <% end %>

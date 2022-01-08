@@ -1,9 +1,13 @@
 <div class="jumbotron text-center"><h1>Your tasks</h1></div>
 <div class="container">
+  <%= link_to "<i class='fas fa-plus'></i> Create a task".html_safe, new_task_path ,class: "btn btn-primary mb-5" %>
   <div class="card" style="width: 18rem;">
     <ul class="list-group list-group-flush">
       <% @tasks.each do |task| %>
-        <li class="list-group-item"> [<%= task.completed ? "X" : " " %>] <%= link_to task.title, task_path(task) %> </li>
+        <li class="list-group-item">
+          <%= link_to task.completed ? '<i class="far fa-check-square"></i>'.html_safe : '<i class="far fa-square"></i>'.html_safe, check_task_path(task) %>
+          <%= link_to task.title, task_path(task) %>
+          <%= link_to '<i class="fas fa-trash"></i>'.html_safe, task_path(task), data: { confirm: "Did you really complete that?"}, method: "delete" %>        </li>
       <% end %>
     </ul>
   </div>   
